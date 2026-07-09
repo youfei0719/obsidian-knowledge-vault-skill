@@ -1,68 +1,82 @@
 # Obsidian Knowledge Vault Skill
 
-An open-source Codex Skill for turning links, notes, ideas, code snippets, UI references, writing material, and work logs into reusable Obsidian Markdown cards.
+> 用 Codex 把链接、想法、代码、设计参考、写作素材和工作记录，自动整理成可检索、可复用、可反向调用的 Obsidian Markdown 知识卡片。
 
-The core idea is simple:
+[English](#english) | [安装](#安装) | [快速开始](#快速开始) | [隐私说明](#隐私说明)
 
-> Do not use AI only to save information. Use AI to make information retrievable and reusable.
+## 这是什么
 
-This skill helps Codex act like a knowledge-vault operator:
+`obsidian-knowledge-vault` 是一个 Codex Skill，用来把“随手收藏”升级成一套可长期复用的个人知识库工作流。
 
-- capture messy input
-- classify it
-- turn it into a standalone Markdown card
-- extract why it matters
-- mark how it can be reused
-- update indexes
-- support reverse lookup later
-- optionally sync the vault through Git
+普通收藏夹只负责存东西。这个 Skill 让 Codex 继续往后做几步：
 
-No private vault content is included in this repository. The workflow is abstracted into a reusable template.
+1. 看懂你丢进来的内容是什么。
+2. 判断它应该归到哪个类别。
+3. 整理成一张独立的 Obsidian Markdown 卡片。
+4. 提炼它为什么值得保存。
+5. 标注以后可以怎么复用。
+6. 更新最近收录、分类、标签、可复用素材、创意线索等索引。
+7. 以后你提问时，从已有卡片和索引里反向找资料。
 
-## What It Can Do
+一句话：它不是帮你“存资料”，而是帮你把资料变成以后真的能找、能用、能复盘的知识资产。
 
-### 1. Material Capture
+## 适合谁
 
-Save anything that may be useful later:
+适合经常积累这些内容的人：
 
-- links and webpages
-- tools and open-source projects
-- UI references
-- code snippets
-- prompts and agent workflows
-- writing material
-- marketing cases
-- product ideas
-- research material
-- creators or accounts
-- reusable templates
+- 设计参考、UI 细节、动效、组件、落地页
+- 开源项目、工具网站、软件服务
+- 代码片段、脚本、Prompt、Agent 工作流
+- 文案、标题、表达句式、社媒素材
+- 营销案例、产品想法、研究资料
+- 日常工作记录、周总结、月总结、项目复盘
 
-### 2. Semantic Classification
+如果你的收藏经常散落在浏览器书签、微信收藏、备忘录、截图和文件夹里，这个 Skill 的目标就是把这些碎片整理成一个稳定的 Obsidian 知识系统。
 
-Codex decides where the item belongs instead of forcing you to choose a folder first.
+## 核心能力
 
-Default categories include:
+### 1. 素材捕获
 
-- `00-收集箱/`
-- `01-界面设计/`
-- `02-代码片段/`
-- `03-Codex能力/`
-- `04-工具网站/`
-- `05-写作素材/`
-- `06-段子梗图/`
-- `07-营销案例/`
-- `08-产品想法/`
-- `09-研究资料/`
-- `10-账号人物/`
-- `11-可复用模板/`
-- `12-工作记录/`
-- `99-归档/`
+看到有用的东西，不需要先想文件夹怎么分、标题怎么起、标签怎么写，直接交给 Codex。
 
-You can rename these categories for your own language or domain.
+可以处理：
 
-### 3. Knowledge Card Creation
+- 链接和网页
+- 一段文字
+- 一个抽象想法
+- 一段代码
+- 一个工具或开源项目
+- 一个 UI / 产品 / 文案参考
+- 一条工作记录
 
-Every saved item becomes a standalone Markdown card with metadata and reusable context:
+### 2. 语义分类
+
+Codex 会根据内容语义判断应该放到哪里，而不是让用户先手动归档。
+
+默认分类：
+
+- `00-收集箱/`：待判断、临时、价值未定内容
+- `01-界面设计/`：UI、页面、按钮、动效、组件、交互细节
+- `02-代码片段/`：前端、后端、脚本、提示词
+- `03-Codex能力/`：Skills、Agent 规则、工作流、提示词系统
+- `04-工具网站/`：工具、开源项目、软件、服务平台
+- `05-写作素材/`：文案、标题、表达、社媒、广告
+- `06-段子梗图/`：段子、梗、评论、搞笑素材
+- `07-营销案例/`：品牌、传播、广告、热点案例
+- `08-产品想法/`：App 想法、网站想法、功能灵感、商业模式
+- `09-研究资料/`：文章、报告、资料、深度研究
+- `10-账号人物/`：博主、账号、人物、创作者案例
+- `11-可复用模板/`：结构、方法、模板
+- `12-工作记录/`：日记录、周总结、月总结、工作复盘
+- `99-归档/`：历史或低频内容
+
+这些目录只是默认模板，可以按你的语言、领域和使用习惯修改。
+
+### 3. 知识卡片化
+
+每条新内容都会变成一张独立 Markdown 卡片，而不是只保存一个链接。
+
+默认卡片结构：
 
 ```markdown
 ---
@@ -95,10 +109,13 @@ Every saved item becomes a standalone Markdown card with metadata and reusable c
 ## 适合反向调用的场景
 ```
 
-### 4. Index Maintenance
+这张卡片的重点不是“记录发生了什么”，而是保留未来检索和复用需要的信息。
 
-The skill tells Codex to update:
+### 4. 多维索引维护
 
+Skill 会指导 Codex 更新这些索引：
+
+- `_索引/收藏总览.md`
 - `_索引/最近收录.md`
 - `_索引/分类索引.md`
 - `_索引/标签索引.md`
@@ -107,60 +124,81 @@ The skill tells Codex to update:
 - `_索引/工作索引.md`
 - `_索引/分类变更记录.md`
 
-These indexes are what make the vault useful later.
+索引是这套系统的关键。没有索引，Obsidian 只是文件夹；有了索引，资料才会变成可以被反向调用的知识库。
 
-### 5. Reverse Knowledge Lookup
+### 5. 反向知识检索
 
-Instead of searching through old bookmarks manually, you can ask:
+以后不用手动翻收藏夹，可以直接问 Codex：
 
-- "What have I saved recently?"
-- "Which saved UI references can help this project?"
-- "Find five saved materials I can use for ad copy."
-- "What old notes can help with this product idea?"
-- "What did I work on this week?"
-- "Summarize my month from my work records."
+- 我最近收藏了哪些东西？
+- 我收藏过哪些 UI 设计参考？
+- 这个项目能用哪些旧资料？
+- 找 5 个能用于广告文案的素材。
+- 有没有之前存过的产品功能灵感？
+- 我这周都做了哪些工作？
+- 帮我从工作记录里整理月报。
 
-Codex should search indexes first, then source cards, and explain how each result can be reused.
+Codex 会优先查索引，再查具体卡片，并说明每条资料可以怎么用于当前任务。
 
-### 6. Work Record System
+### 6. 工作记录沉淀
 
-The same vault can store:
+这套结构也支持工作记录：
 
-- daily work records
-- weekly summaries
-- monthly summaries
-- project retrospectives
+- 日记录
+- 周总结
+- 月总结
+- 项目复盘
 
-This makes weekly reports and monthly reports much easier because the raw work trail is already structured.
+每天只要简单记录做了什么，后面写周报、月报、复盘时就不用靠记忆硬想。
 
-## Installation
+## 工作原理
 
-Clone this repository:
+这套工作流分成三层：
+
+```text
+输入层：素材捕获 / 工作记录捕获 / 来源保留
+处理层：语义分类 / 知识卡片化 / 价值提炼 / 复用场景标注
+调用层：标签体系 / 多维索引 / 反向知识检索 / Git 同步备份
+```
+
+如果配合 Git 使用，链路可以理解为：
+
+```text
+Codex 负责理解和整理
+Obsidian 负责阅读和长期保存
+GitHub 负责同步和备份
+```
+
+## 安装
+
+克隆仓库：
 
 ```bash
 git clone https://github.com/youfei0719/obsidian-knowledge-vault-skill.git
 ```
 
-Copy the skill folder into your Codex skills directory:
+复制 Skill 到 Codex 技能目录：
 
 ```bash
 mkdir -p ~/.codex/skills
 cp -R obsidian-knowledge-vault-skill/obsidian-knowledge-vault ~/.codex/skills/
 ```
 
-Restart Codex so it can discover the new skill.
+重启 Codex，让它重新发现 Skill。
 
-## Optional: Initialize a New Vault
+## 快速开始
 
-The skill includes a helper script that creates a generic starter Obsidian vault structure.
+### 初始化一个新的 Obsidian Vault
+
+Skill 内置了一个初始化脚本，可以创建通用知识库骨架：
 
 ```bash
 python3 ~/.codex/skills/obsidian-knowledge-vault/scripts/init_vault.py ~/ObsidianKnowledgeVault
 ```
 
-Open `~/ObsidianKnowledgeVault` in Obsidian.
+然后用 Obsidian 打开 `~/ObsidianKnowledgeVault`。
 
-If you want Git sync:
+如果你想用 Git 备份：
 
 ```bash
 cd ~/ObsidianKnowledgeVault
@@ -169,77 +207,86 @@ git add .
 git commit -m "初始化 Obsidian 知识库"
 ```
 
-Then create a private GitHub repo and push it, or use your preferred sync method.
+之后可以创建一个私有 GitHub 仓库并推送，或者使用你自己的同步方案。
 
-## How To Use
-
-### Save a Link
+### 保存一个链接
 
 ```text
 Use $obsidian-knowledge-vault.
-Save this link into my Obsidian vault:
+收录这个链接到我的 Obsidian Vault：
 https://example.com
 ```
 
-Codex should:
+Codex 应该会完成：
 
-1. understand the link
-2. classify it
-3. create a Markdown card
-4. update indexes
-5. commit and push if your vault uses Git
+1. 理解链接内容。
+2. 判断分类。
+3. 创建 Markdown 卡片。
+4. 更新相关索引。
+5. 如果 Vault 使用 Git，同步提交并推送。
 
-### Save an Idea
-
-```text
-Use $obsidian-knowledge-vault.
-This idea may be useful later:
-An app that turns daily work notes into monthly reports.
-```
-
-### Record Work
+### 保存一个想法
 
 ```text
 Use $obsidian-knowledge-vault.
-Work record: today I finished the onboarding flow, fixed two bugs, and drafted the release notes.
+这个以后可能用得上：
+做一个把日常工作记录自动整理成月报的工具。
 ```
 
-### Ask For Reverse Lookup
+### 记录工作
 
 ```text
 Use $obsidian-knowledge-vault.
-Find saved materials that can help me design a SaaS dashboard.
+工作记录：今天完成了 onboarding 页面，修了两个 bug，并整理了发布说明。
 ```
 
-## Recommended Daily Workflow
+### 反向检索
 
-1. Send anything useful to Codex.
-2. Let Codex write one card per item.
-3. Let Codex update the indexes.
-4. Ask reverse-lookup questions when starting new work.
-5. Use daily work records as raw material for weekly and monthly summaries.
+```text
+Use $obsidian-knowledge-vault.
+从我之前收藏的内容里，找一些能帮助我设计 SaaS dashboard 的参考。
+```
 
-## Privacy Guidance
+## 推荐使用方式
 
-Before publishing your own version of this workflow:
+日常使用时可以把 Codex 当成资料管理员：
 
-- remove real notes
-- remove screenshots
-- remove attachments
-- remove private repo names
-- remove tokens, keys, and credentials
-- remove personal identifiers
-- remove client or employer data
-- keep only templates, folder structure, and workflow rules
+1. 看到有用内容，直接发给 Codex。
+2. 让 Codex 生成一张独立卡片。
+3. 让 Codex 更新索引。
+4. 开始新项目、写文案、做设计、写总结时，直接问过去有哪些素材能用。
+5. 定期用工作记录生成周总结或月总结。
 
-This repository follows that rule: it contains only the reusable skill and generic starter templates.
+## 隐私说明
 
-## Repository Layout
+这个仓库只包含通用 Skill、通用模板和初始化脚本，不包含任何私人 Vault 内容。
+
+如果你要基于自己的知识库发布类似项目，请务必先移除：
+
+- 真实笔记
+- 截图和附件
+- 私有仓库名
+- 本地绝对路径
+- Token、Key、密码和 Cookie
+- 个人身份信息
+- 客户、公司、项目或工作敏感内容
+- 原始工作记录和内部复盘
+
+建议只发布：
+
+- 工作流规则
+- 通用目录结构
+- 通用模板
+- 初始化脚本
+- 脱敏后的示例
+
+## 仓库结构
 
 ```text
 obsidian-knowledge-vault/
   SKILL.md
-  agents/openai.yaml
+  agents/
+    openai.yaml
   references/
     templates.md
     vault-structure.md
@@ -247,6 +294,56 @@ obsidian-knowledge-vault/
     init_vault.py
 ```
 
+## 设计原则
+
+- 先卡片，后索引。
+- 先复用价值，后归档洁癖。
+- 不确定分类时，先进收集箱。
+- 每条内容都要解释未来怎么用。
+- 反向查询时，优先查索引，再查原始卡片。
+- 私人内容和公开模板必须严格分离。
+
 ## License
 
 MIT
+
+---
+
+## English
+
+`obsidian-knowledge-vault` is a Codex Skill for turning captured material into reusable Obsidian Markdown knowledge cards.
+
+It helps Codex:
+
+- capture links, notes, snippets, ideas, references, and work logs
+- classify them into a stable vault structure
+- create standalone Markdown cards
+- extract why each item matters
+- describe future reuse scenarios
+- update indexes for retrieval
+- support reverse lookup later
+- optionally sync the vault with Git
+
+Install:
+
+```bash
+git clone https://github.com/youfei0719/obsidian-knowledge-vault-skill.git
+mkdir -p ~/.codex/skills
+cp -R obsidian-knowledge-vault-skill/obsidian-knowledge-vault ~/.codex/skills/
+```
+
+Initialize a starter vault:
+
+```bash
+python3 ~/.codex/skills/obsidian-knowledge-vault/scripts/init_vault.py ~/ObsidianKnowledgeVault
+```
+
+Example prompt:
+
+```text
+Use $obsidian-knowledge-vault.
+Save this link into my Obsidian vault:
+https://example.com
+```
+
+This repository contains only generic workflow rules, templates, and scripts. It does not include private vault content.
